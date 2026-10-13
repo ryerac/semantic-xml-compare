@@ -1,0 +1,11 @@
+{
+  "name": "Generic XML",
+  "absoluteTolerance": 0.0,
+  "relativeTolerance": 0.0,
+  "trimWhitespace": true,
+  "ignoreCase": false,
+  "emptyEqualsMissing": false,
+  "ignoredPaths": [],
+  "matchRules": [],
+  "labelRules": []
+}

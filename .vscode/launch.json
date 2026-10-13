@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "XML Compare (WPF)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build XML Compare",
+      "program": "${workspaceFolder}/src/XmlCompare/bin/Debug/net10.0-windows/XmlCompare.dll",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "justMyCode": true
+    }
+  ]
+}

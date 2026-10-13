@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/XmlCompare/XmlCompare.csproj" />
+  <Project Path="tests/XmlCompare.Tests/XmlCompare.Tests.csproj" />
+</Solution>

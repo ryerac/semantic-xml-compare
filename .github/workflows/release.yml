@@ -18,7 +18,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 20
     env:
-      PUBLISH_DIR: ${{ runner.temp }}\xml-compare-publish
+      PUBLISH_DIR: ${{ github.workspace }}\artifacts\release
 
     steps:
       - name: Validate version tag

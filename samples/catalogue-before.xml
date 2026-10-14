@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalogue>
+  <store>
+    <name>Northstar Home</name>
+    <currency>GBP</currency>
+    <region>United Kingdom</region>
+  </store>
+  <products>
+    <product>
+      <code>CHAIR-BLK</code>
+      <name>Harbour Dining Chair</name>
+      <category>Furniture</category>
+      <price>129.99</price>
+      <stock>18</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>82</heightCm>
+        <widthCm>48</widthCm>
+        <depthCm>52</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Dining</tag>
+        <tag>Modern</tag>
+      </tags>
+    </product>
+    <product>
+      <code>DESK-OAK</code>
+      <name>Atlas Oak Desk</name>
+      <category>Office</category>
+      <price>449.00</price>
+      <stock>7</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>75</heightCm>
+        <widthCm>140</widthCm>
+        <depthCm>70</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Office</tag>
+        <tag>Solid wood</tag>
+      </tags>
+    </product>
+    <product>
+      <code>LAMP-BRS</code>
+      <name>Aster Brass Lamp</name>
+      <category>Lighting</category>
+      <price>79.99</price>
+      <stock>24</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>46</heightCm>
+        <widthCm>20</widthCm>
+        <depthCm>20</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Ambient</tag>
+        <tag>Brass</tag>
+      </tags>
+    </product>
+    <product>
+      <code>SHELF-WAL</code>
+      <name>Rowan Walnut Shelf</name>
+      <category>Storage</category>
+      <price>189.50</price>
+      <stock>4</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>32</heightCm>
+        <widthCm>90</widthCm>
+        <depthCm>24</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Wall mounted</tag>
+        <tag>Walnut</tag>
+      </tags>
+    </product>
+  </products>
+</catalogue>

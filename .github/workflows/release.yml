@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Publish ${{ github.ref_name }}
+    runs-on: windows-latest
+    timeout-minutes: 20
+    env:
+      PUBLISH_DIR: ${{ runner.temp }}\xml-compare-publish
+
+    steps:
+      - name: Validate version tag
+        shell: pwsh
+        run: |
+          if ("${{ github.ref_name }}" -notmatch '^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$') {
+            throw "Release tags must use semantic versioning, for example v1.2.3 or v1.2.3-beta.1."
+          }
+          "RELEASE_VERSION=$('${{ github.ref_name }}'.Substring(1))" >> $env:GITHUB_ENV
+
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore .\XmlCompare.slnx
+
+      - name: Build
+        run: dotnet build .\XmlCompare.slnx --configuration Release --no-restore
+
+      - name: Run comparison engine tests
+        run: dotnet run --project .\tests\XmlCompare.Tests\XmlCompare.Tests.csproj --configuration Release --no-build
+
+      - name: Publish single executable
+        shell: pwsh
+        run: >-
+          dotnet publish .\src\XmlCompare\XmlCompare.csproj
+          -p:PublishProfile=SingleFile
+          -p:PublishDir="$env:PUBLISH_DIR"
+          -p:Version="$env:RELEASE_VERSION"
+
+      - name: Create GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "${{ github.ref_name }}"
+          "$env:PUBLISH_DIR\XmlCompare.exe#XmlCompare-win-x64.exe"
+          --verify-tag
+          --generate-notes
+          --title "XML Compare ${{ github.ref_name }}"

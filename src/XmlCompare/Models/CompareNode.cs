@@ -31,7 +31,7 @@ public sealed class CompareNode : INotifyPropertyChanged
     {
         DifferenceKind.Equal => "Equal",
         DifferenceKind.Changed => "Changed",
-        DifferenceKind.Missing => "Missing from one or more files",
+        DifferenceKind.Missing => "Not in every file",
         _ when DifferenceCount > 0 => $"{DifferenceCount} difference(s)",
         _ => "Equal"
     };

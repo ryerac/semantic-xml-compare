@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalogue>
+  <store>
+    <name>Northstar Home</name>
+    <currency>GBP</currency>
+    <region>United Kingdom</region>
+  </store>
+  <products>
+    <product>
+      <code>LAMP-BRS</code>
+      <name>Aster Brass Lamp</name>
+      <category>Lighting</category>
+      <price>74.99</price>
+      <stock>24</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>46</heightCm>
+        <widthCm>20</widthCm>
+        <depthCm>20</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Brass</tag>
+        <tag>Ambient</tag>
+      </tags>
+    </product>
+    <product>
+      <code>CHAIR-BLK</code>
+      <name>Harbour Dining Chair</name>
+      <category>Furniture</category>
+      <price>129.99</price>
+      <stock>12</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>82</heightCm>
+        <widthCm>48</widthCm>
+        <depthCm>52</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Modern</tag>
+        <tag>Dining</tag>
+      </tags>
+    </product>
+    <product>
+      <code>DESK-OAK</code>
+      <name>Atlas Oak Desk</name>
+      <category>Office</category>
+      <price>449.005</price>
+      <stock>7</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>75</heightCm>
+        <widthCm>140</widthCm>
+        <depthCm>70</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Solid wood</tag>
+        <tag>Office</tag>
+      </tags>
+    </product>
+    <product>
+      <code>PLANTER-GRN</code>
+      <name>Fern Ceramic Planter</name>
+      <category>Accessories</category>
+      <price>39.95</price>
+      <stock>30</stock>
+      <available>true</available>
+      <dimensions>
+        <heightCm>28</heightCm>
+        <widthCm>25</widthCm>
+        <depthCm>25</depthCm>
+      </dimensions>
+      <tags>
+        <tag>Ceramic</tag>
+        <tag>Indoor</tag>
+      </tags>
+    </product>
+  </products>
+</catalogue>

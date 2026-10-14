@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: windows-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore .\XmlCompare.slnx
+
+      - name: Build
+        run: dotnet build .\XmlCompare.slnx --configuration Release --no-restore
+
+      - name: Run comparison engine tests
+        run: dotnet run --project .\tests\XmlCompare.Tests\XmlCompare.Tests.csproj --configuration Release --no-build

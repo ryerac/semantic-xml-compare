@@ -90,6 +90,16 @@ try
         Console.WriteLine($"Sample comparison passed in {stopwatch.ElapsedMilliseconds:N0} ms.");
     }
 
+    var demoBefore = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "samples", "catalogue-before.xml"));
+    var demoAfter = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "samples", "catalogue-after.xml"));
+    if (File.Exists(demoBefore) && File.Exists(demoAfter))
+    {
+        var exactDemo = engine.Compare([demoBefore, demoAfter], new ComparisonProfile());
+        Assert(exactDemo.DifferenceCount == 5, "the demo should expose five differences without tolerance");
+        var tolerantDemo = engine.Compare([demoBefore, demoAfter], new ComparisonProfile { AbsoluteTolerance = 0.01 });
+        Assert(tolerantDemo.DifferenceCount == 4, "the demo should suppress its small price difference with 0.01 tolerance");
+    }
+
     Console.WriteLine("All comparison engine smoke tests passed.");
 }
 finally

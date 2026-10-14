@@ -41,73 +41,14 @@ Drop two or three XML files onto the window, or choose them with the file button
 
 For a quick demonstration, compare [`samples/catalogue-before.xml`](samples/catalogue-before.xml) with [`samples/catalogue-after.xml`](samples/catalogue-after.xml) using the Generic XML profile. The products and tags are deliberately reordered, while a small set of genuine changes demonstrates changed, added, and removed values.
 
-Set **Absolute tolerance** to `0.01` for the demo. The desk price differs by only `0.005`, so it is treated as equal, while the four meaningful differences remain visible. Set the tolerance back to `0` to reveal that small numeric difference as well.
+Set **Fixed tolerance** to `0.01` for the demo. The desk price differs by only `0.005`, so it is treated as equal, while the four meaningful differences remain visible. Set the tolerance back to `0` to reveal that small numeric difference as well.
 
 ## Profiles
 
 Profiles teach XML Compare how to interpret a document without putting domain-specific rules in the comparison engine. They are JSON files in [`profiles`](profiles) during development. For a published executable, custom profiles can be placed in a `Profiles` directory beside `XmlCompare.exe`.
 
-For example, consider a product catalogue whose `<product>` elements may appear in a different order:
-
-```xml
-<catalogue>
-  <product id="42">
-    <sku>CHAIR-BLK</sku>
-    <name>Black chair</name>
-    <price>49.99</price>
-    <generatedAt>2026-10-13T10:00:00Z</generatedAt>
-  </product>
-</catalogue>
-```
-
-A profile for it could be:
-
-```json
-{
-  "name": "Product catalogue",
-  "absoluteTolerance": 0.01,
-  "relativeTolerance": 0.001,
-  "trimWhitespace": true,
-  "ignoreCase": false,
-  "emptyEqualsMissing": false,
-  "ignoredPaths": [
-    "product/generatedAt"
-  ],
-  "matchRules": [
-    {
-      "path": "product",
-      "keys": [
-        ["sku"],
-        ["@id"],
-        ["name", "price"]
-      ]
-    }
-  ],
-  "labelRules": [
-    {
-      "path": "product",
-      "fields": ["sku", "name"]
-    }
-  ]
-}
-```
-
-The main properties are:
-
-- `name`: name shown in the profile selector.
-- `absoluteTolerance`: maximum numeric difference treated as equal. Here, `49.99` and `50.00` are equal.
-- `relativeTolerance`: allowed numeric difference as a ratio of the larger value. `0.001` means 0.1%.
-- `trimWhitespace`: ignores whitespace at the beginning and end of text values.
-- `ignoreCase`: compares text without case sensitivity when enabled.
-- `emptyEqualsMissing`: treats an absent field and an empty field as equivalent when enabled.
-- `ignoredPaths`: elements or attributes excluded from comparison.
-- `matchRules`: fields used to identify repeated elements independently of their order.
-- `labelRules`: fields included in a block's tree label.
-
-Paths are matched by suffix. `product` applies to any product element, while `catalogue/product` is more specific. Prefix an attribute name with `@`, such as `@id`.
-
-Each entry in `keys` is an alternative identity. All fields in an alternative form one composite key. A key is usable only when its fields are present and unique within each collection; when several alternatives are usable, the engine favours the one that matches the most records across the files. This avoids choosing locally unique but regenerated identifiers.
-
 The bundled [`Generic.json`](profiles/Generic.json) contains conservative defaults and no document-specific rules. Copy it under a new filename to create a custom profile.
+
+See **[Creating comparison profiles](docs/profiles.md)** for a complete generic example and explanations of matching keys, composite identities, display labels, ignored paths, and numeric tolerances.
 
 The comparison never modifies source XML files. DTD processing and external XML resolution are disabled.

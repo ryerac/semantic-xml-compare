@@ -22,7 +22,7 @@ Create a self-contained Windows x64 executable with:
 dotnet publish .\src\XmlCompare\XmlCompare.csproj -p:PublishProfile=SingleFile
 ```
 
-The result is `artifacts\publish\win-x64\XmlCompare.exe`. It does not require a separate .NET installation. Published builds use built-in Generic defaults; place an optional `Profiles` directory beside the executable to distribute additional comparison profiles.
+The result is `artifacts\publish\win-x64\XmlCompare.exe`. It is a portable, self-contained application rather than an installer, and does not require a separate .NET installation. Published builds use built-in Generic defaults; place an optional `Profiles` directory beside the executable to distribute additional comparison profiles.
 
 ## Releases
 
@@ -35,7 +35,7 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Tags matching `v*` start the release workflow. It validates tags such as `v1.2.3` or `v1.2.3-beta.1`, runs the build and tests, publishes the self-contained Windows x64 executable, and creates a GitHub Release with generated release notes and `XmlCompare-win-x64.exe` attached.
+Tags matching `v*` start the release workflow. It validates tags such as `v1.2.3` or `v1.2.3-beta.1`, runs the build and tests, publishes the self-contained Windows x64 executable, and creates a GitHub Release with generated release notes and `XmlCompare-win-x64-portable.exe` attached.
 
 Drop two or three XML files onto the window, or choose them with the file buttons.
 
